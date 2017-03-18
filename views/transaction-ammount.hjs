@@ -1,0 +1,28 @@
+<style media="screen">
+.starter-template {
+  margin-top: 120px;
+  padding: 40px 15px;
+  max-width: 900px;
+}
+</style>
+
+<div class="starter-template center-block">
+
+  <h1>Cena do Zapłaty</h1>
+  <p class="lead">W poniższy polu napisze cenę którą musisz zapłacić za usługę.</p>
+
+  {{#errors}}
+      <div class="alert alert-danger" role="alert">{{ msg }}</div>
+  {{/errors}}
+
+  <form class="form-inline" action="/przelew/podsumowanie" method="post">
+    <div class="form-group">
+      <div class="input-group">
+        <input type="text" class="form-control" id="exampleInputAmount" name="money" placeholder="000.00" value="{{ ammount }}">
+        <div class="input-group-addon">zł</div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success">Do podsumowania</button>
+  </form>
+
+</div>

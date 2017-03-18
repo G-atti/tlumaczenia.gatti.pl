@@ -1,0 +1,30 @@
+<style media="screen">
+.anchor {
+  display:block;
+  height:63px;
+  margin-top:-63px;
+  visibility:hidden
+}
+</style>
+
+<hr class="featurette-divider">
+
+<span id="about" class="anchor"></span>
+
+  {{> features }}
+
+<hr class="featurette-divider">
+
+  {{> video }}
+
+<hr class="featurette-divider">
+
+<span id="uslugi" class="anchor"></span>
+
+  {{> featuresdetailed }}
+
+<hr class="featurette-divider">
+
+<span id="contact" class="anchor"></span>
+
+  {{> contact }}

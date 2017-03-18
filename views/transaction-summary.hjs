@@ -1,0 +1,69 @@
+<style media="screen">
+.starter-template {
+  margin-top: 120px;
+  padding: 40px 15px;
+  max-width: 900px;
+}
+</style>
+
+<div class="starter-template center-block">
+
+  <h1>Podsumowanie Zapłaty</h1>
+  <p class="lead">Jeśli wszsytkie dane się zgadzają, dokonaj zapłaty.</p>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Podsumowanie</h3>
+    </div>
+    <div class="panel-body">
+
+      <table class="table table-condensed">
+
+        <thead>
+          <tr>
+            <td><strong>Nazwa przedmiotu</strong></td>
+            <td class="text-center"><strong>Cena przedmiotu</strong></td>
+            <td class="text-center"><strong>Ilość</strong></td>
+            <td class="text-right"><strong>Suma</strong></td>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Tłumaczenie</td>
+            <td class="text-center">{{ money }} zł</td>
+            <td class="text-center">1</td>
+            <td class="text-right">{{ money }} zł</td>
+          </tr>
+          <tr class="active">
+            <td class="highrow"></td>
+            <td class="highrow"></td>
+            <td class="highrow text-center"><strong>Netto</strong></td>
+            <td class="highrow text-right">{{ money }} zł</td>
+          </tr>
+          <tr>
+            <td class="emptyrow"></td>
+            <td class="emptyrow"></td>
+            <td class="emptyrow text-center"><strong>Podatek</strong></td>
+            <td class="emptyrow text-right">{{ tax }} zł</td>
+          </tr>
+          <tr>
+            <td class="emptyrow"></td>
+            <td class="emptyrow"></td>
+            <td class="emptyrow text-center"><strong>Brutto</strong></td>
+            <td class="emptyrow text-right">{{ total }} zł</td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+
+  <div class="row form-group has-error">
+    <div class="col-xs-6">
+      <a class="btn btn-info" href="/przelew/suma" role="button">Zmień cenę</a>
+      <a class="btn btn-success" href="/przelew/dane" role="button">Zgadza się...</a>
+    </div>
+  </div>
+
+</div>

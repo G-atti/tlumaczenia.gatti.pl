@@ -1,0 +1,4 @@
+<footer>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+  <p>© 1999 - {{ year }} "GATTI" Sabina Gatti</p>
+</footer>

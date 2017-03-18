@@ -1,0 +1,52 @@
+<style media="screen">
+
+  .big-circle {
+    width: 140px; height: 140px; background-color: grey; overflow:auto
+  }
+  .small-circle {
+    width: 120px; height: 120px; background-color: white; margin-top: 10px
+  }
+  .row {
+    margin-top: 10px;
+  }
+
+  #pencil {
+    margin-top: 17px;
+  }
+  #comments {
+    margin-top: 16px;
+  }
+  #briefcase {
+    margin-top: 22px;
+  }
+</style>
+
+<div class="row">
+  <div class="col-lg-4">
+    <div class="img-circle center-block big-circle">
+      <div class="img-circle center-block small-circle">
+        <img id="pencil" src="images/pencil.png" alt="Generic placeholder image" width="53" height="69">
+      </div>
+    </div>
+    <h2>Tłumaczenia Pisemne</h2>
+    <p>Tłumaczenia uwierzytelnione obejmują szeroką gamę dokumentów o różnej tematyce i wymagane są przez różnego rodazju instytuce i urzędy.</p>
+  </div><!-- /.col-lg-4 -->
+  <div class="col-lg-4">
+    <div class="img-circle center-block big-circle">
+      <div class="img-circle center-block small-circle">
+        <img id="comments" src="images/comments-o.png" alt="Generic placeholder image" width="53" height="69">
+      </div>
+    </div>
+    <h2>Tłumaczenia Ustne</h2>
+    <p>Dla firm podczas spotkań, wizyt, szkoleń, wyjazdów krajowych i za granicę. Rozmowy telefoniczne i telekonferencje, przy czynnościach w Kancelariach Notarialnych i USC.</p>
+  </div><!-- /.col-lg-4 -->
+  <div class="col-lg-4">
+    <div class="img-circle center-block big-circle">
+      <div class="img-circle center-block small-circle">
+        <img id="briefcase" src="images/briefcase.png" alt="Generic placeholder image" width="53" height="69">
+      </div>
+    </div>
+    <h2>Doradca Międzynarodowy</h2>
+    <p>Pomoc w wyszukaniu potencjalnych klientów we Włoszech i w innych sprawach wymagających znajomości j. włoskiego.</p>
+  </div><!-- /.col-lg-4 -->
+</div><!-- /.row -->

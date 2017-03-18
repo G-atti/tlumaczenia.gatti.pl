@@ -1,0 +1,14 @@
+<style media="screen">
+.starter-template {
+  margin-top: 120px;
+  padding: 40px 15px;
+  max-width: 900px;
+}
+</style>
+
+<div class="starter-template center-block">
+
+  <h1>Koniec</h1>
+  <p class="lead">Dziękuje za dokonanie płatności. Możesz teraz wrócić do <a href="/">strony głónwje</a>.</p>
+
+</div>

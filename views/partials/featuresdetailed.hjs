@@ -1,0 +1,33 @@
+<div class="row featurette">
+  <div class="col-md-7">
+    <h2 class="featurette-heading">Jakość jest ważna</h2>
+    <p class="lead">Tłumaczę od przeszło 20 lat. Moje doświadczenie zawodowe gwarantuje wysoką jakość tłumaczeń zarówno pisemnych jak i ustnych.</p>
+  </div>
+  <div class="col-md-5">
+    <img class="featurette-image img-responsive center-block" src="images/5001.jpg" alt="Generic placeholder image">
+  </div>
+</div>
+
+<hr class="featurette-divider">
+
+<div class="row featurette">
+  <div class="col-md-7 col-md-push-5">
+    <h2 class="featurette-heading">Osobowość jest ważna</h2>
+    <p class="lead">Bardzo dobra znajomość języka nie wystarczy podczas tłumaczeń ustnych. Cechy osobowości i predyspozycje tłumacza są równie ważne. Moja odporność na stres, asertywność, otwartość na ludzi, mój optymizm i moja ciekawość sprawiają, że jakość świadczonych przeze mnie usług w zakresie tłumaczeń ustnych jest bardzo wysoka.</p>
+  </div>
+  <div class="col-md-5 col-md-pull-7">
+    <img class="featurette-image img-responsive center-block" src="images/5002.jpg" alt="Generic placeholder image">
+  </div>
+</div>
+
+<hr class="featurette-divider">
+
+<div class="row featurette">
+  <div class="col-md-7">
+    <h2 class="featurette-heading">Chcesz inwestować we Włoszech</h2>
+    <p class="lead">Moje wsparcie językowe, wiedza i kontakty zawodowe mogą ułatwić pierwsze kontakty biznesowe lub pomóc w załatwieniu spraw we włoskich urzędach.</p>
+  </div>
+  <div class="col-md-5">
+    <img class="featurette-image img-responsive center-block" src="images/5003.jpg" alt="Generic placeholder image">
+  </div>
+</div>
