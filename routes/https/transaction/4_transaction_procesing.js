@@ -5,7 +5,7 @@ let braintree = require("braintree");
 let router = express.Router();
 
 let gateway = braintree.connect({
-	environment:  braintree.Environment.Production,
+	environment:  braintree.Environment.Sandbox,
 	merchantId:   process.env.BT_MERCHANT_ID,
 	publicKey:    process.env.BT_PUBLIC_KEY,
 	privateKey:   process.env.BT_PRIVATE_KEY
@@ -14,13 +14,13 @@ let gateway = braintree.connect({
 //
 //	Actually take the card data and use it to charge the user
 //
-router.post("/:total", function (req, res, next) {
+router.post("/:cpu_total", function (req, res, next) {
 
 	//
 	//	1.	Transaction options
 	//
 	let options = {
-		amount: req.params.total / 100,
+		amount: req.params.cpu_total / 100,
 		paymentMethodNonce: req.body.payment_method_nonce
 	}
 
@@ -57,7 +57,7 @@ router.post("/:total", function (req, res, next) {
 		//
 		if(Boolean(result.success) == false)
 		{
-			//console.log(result.errors.errorCollections.transaction.validationErrors);
+			console.log(result.errors.errorCollections.transaction.validationErrors);
 
 			//
 			//	1.	Create a error for the user
@@ -78,9 +78,18 @@ router.post("/:total", function (req, res, next) {
 		}
 
 		//
-		//	3.	Save Customer name to say thank to him or her
+		//	3. Save the basic transaction info
 		//
-		let name = result.transaction.creditCard.cardholderName;
+		let info = {
+			name: result.transaction.creditCard.cardholderName,
+			cpu_total: req.params.cpu_total
+		}
+
+		//
+		//	4.	Set a cookie with all the basic information for the
+		//		thank you page
+		//
+		res.cookie('transaction', info, cookie.settings());
 
 		//
 		//	->	Show the thank you page

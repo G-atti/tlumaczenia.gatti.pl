@@ -5,7 +5,7 @@ let braintree = require("braintree");
 let router = express.Router();
 
 let gateway = braintree.connect({
-	environment:  braintree.Environment.Production,
+	environment:  braintree.Environment.Sandbox,
 	merchantId:   process.env.BT_MERCHANT_ID,
 	publicKey:    process.env.BT_PUBLIC_KEY,
 	privateKey:   process.env.BT_PRIVATE_KEY
@@ -29,10 +29,15 @@ router.use('/:total', function(req, res, next) {
 	//
 	//	3.	Get the total of the transaction to be displayed when paying
 	//
-	let total = req.params.total / 100;
+	let human_total = req.params.total / 100;
 
 	//
-	//	4.	Set the data in the past so we can delete the cookie from the
+	//	4.	Have a positive integer
+	//
+	let cpu_total = req.params.total;
+
+	//
+	//	5.	Set the data in the past so we can delete the cookie from the
 	//		browser
 	//
 	let cookie_options = {
@@ -51,8 +56,10 @@ router.use('/:total', function(req, res, next) {
 		.cookie("errors", "", cookie.settings(cookie_options))
 		.render("_frame", {
 			year: year,
-			total: total,
+			human_total: human_total,
+			cpu_total: cpu_total,
 			title: "Home",
+			client_token: response.clientToken,
 			description: "Home Page",
 			og_image: "https://" + req.hostname + "/images/og/index.png",
 			url: "https://" + req.hostname,

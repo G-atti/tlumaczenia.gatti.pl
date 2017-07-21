@@ -97,7 +97,7 @@ app.use(helmet.contentSecurityPolicy({
     imgSrc: ["'self'", "data:"],
     mediaSrc: ["'none'"],
     objectSrc: ["'none'"],
-    scriptSrc: ["'self'", "'unsafe-inline'"],
+    scriptSrc: ["'self'", "'unsafe-inline'", " https://api.sandbox.braintreegateway.com", " http://www.googleadservices.com", " http://www.google-analytics.com"],
     styleSrc: ["'self'", "'unsafe-inline'"]
   }
 }));

@@ -7,7 +7,7 @@
 </style>
 
 <script>
-	var clientToken = "{{clientToken}}";
+	var clientToken = "{{client_token}}";
 
 	braintree.setup(clientToken, "custom", {
 		id: "checkout"
@@ -29,14 +29,14 @@
 		<div class="alert alert-danger" role="alert">{{msg}}</div>
 	{{/errors}}
 
-	<form id="checkout" class="form-horizontal" action="/przelew/procesing/{{total}}" method="post" autocomplete="on">
+	<form id="checkout" class="form-horizontal" action="/przelew/procesing/{{cpu_total}}" method="post" autocomplete="on">
 		<input type=hidden autocomplete="transaction-currency" value="PLN">
 		<input type=hidden autocomplete="transaction-amount" name="money" value="{{ ammount }}">
 
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Cena</label>
 			<div class="col-xs-4">
-				<p class="form-control-static">{{ total }} zł</p>
+				<p class="form-control-static">{{human_total}} zł</p>
 			</div>
 		</div>
 

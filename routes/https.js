@@ -26,7 +26,7 @@ router.use('/przelew/suma', 		require('./https/transaction/1_transaction_ammount
 router.use('/przelew/podsumowanie', require('./https/transaction/2_transaction_summary'));
 router.use('/przelew/carta', 		require('./https/transaction/3_transaction_card_information'));
 router.use('/przelew/procesing', 	require('./https/transaction/4_transaction_procesing'));
-router.use('/przelew/thankyou', 	require('./https/transaction/5_transaction_thankyou'));
+router.use('/przelew/dziekuje', 	require('./https/transaction/5_transaction_thankyou'));
 
 ////////////////////////////////////////////////////////////////////////////////
 

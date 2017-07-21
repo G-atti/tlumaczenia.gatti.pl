@@ -1,5 +1,5 @@
 let express = require('express');
-let sendgrid  = require('sendgrid')(process.env.SG_API_KEY_ID);
+let sendgrid  = require('sendgrid')(process.env.SG_API_KEY);
 
 let router = express.Router();
 
@@ -20,6 +20,11 @@ router.get('/', function(req, res, next) {
 	let year = date.getFullYear();
 
 	//
+	//	3.	Get the transaction information
+	//
+	let info = req.cookies.transaction;
+
+	//
 	//	1.	Create a new Sendgrid object
 	//
 	let email = new sendgrid.Email();
@@ -35,9 +40,9 @@ router.get('/', function(req, res, next) {
 	//
 	//	3.	Select and add the right data to the template
 	//
-	email.setFilters({"templates": {"settings": {"enabled": 1, "template_id": "fd062812-8259-4816-bd88-611d08f19aa2"}}});
-	email.addSubstitution(':name:', req.session.customername);
-	email.addSubstitution(':ammount:', req.session.ammount);
+	email.setFilters({"templates": {"settings": {"enabled": 1, "template_id": "8f11e686-77dc-41b0-9c86-38110a603eaa"}}});
+	email.addSubstitution(':name:', info.name);
+	email.addSubstitution(':ammount:', info.cpu_total / 100);
 
 	//
 	//	4.	Send the actual email
@@ -49,7 +54,9 @@ router.get('/', function(req, res, next) {
 		//
 		if(err)
 		{
-			return console.error(err);
+			console.error(err);
+
+			return res.redirect('back');
 		}
 
 		//
