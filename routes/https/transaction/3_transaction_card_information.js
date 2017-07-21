@@ -1,3 +1,4 @@
+let cookie = new (require(process.cwd() + '/helpers/cookie'));
 let express = require('express');
 let braintree = require("braintree");
 
@@ -13,7 +14,7 @@ let gateway = braintree.connect({
 //
 //  Show a page with all the detail of the order
 //
-router.use('/', function(req, res, next) {
+router.use('/:total', function(req, res, next) {
 
 	//
 	//  1.  Create a date object
@@ -26,21 +27,38 @@ router.use('/', function(req, res, next) {
 	let year = date.getFullYear();
 
 	//
-	//	1.	Call Brain tree not sure what for
+	//	3.	Get the total of the transaction to be displayed when paying
+	//
+	let total = req.params.total / 100;
+
+	//
+	//	4.	Set the data in the past so we can delete the cookie from the
+	//		browser
+	//
+	let cookie_options = {
+		expires:  new Date(0)
+	}
+
+	//
+	//	4.	Call Brain tree not sure what for
 	//
 	gateway.clientToken.generate({}, function (err, response) {
 
 		//
 		//  ->  Render the HTML page
 		//
-		res.render("_frame", {
+		res
+		.cookie("errors", "", cookie.settings(cookie_options))
+		.render("_frame", {
 			year: year,
+			total: total,
 			title: "Home",
 			description: "Home Page",
 			og_image: "https://" + req.hostname + "/images/og/index.png",
 			url: "https://" + req.hostname,
+			errors: req.cookies.errors || false,
 			partials: {
-				body: 'transaction/detail'
+				body: 'transaction/card'
 			}
 		});
 

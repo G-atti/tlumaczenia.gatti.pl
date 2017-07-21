@@ -62,7 +62,7 @@
   <div class="row form-group has-error">
     <div class="col-xs-6">
       <a class="btn btn-info" href="/przelew/suma" role="button">Zmień cenę</a>
-      <a class="btn btn-success" href="/przelew/dane" role="button">Zgadza się...</a>
+      <a class="btn btn-success" href="/przelew/carta/{{cpu_total}}" role="button">Zgadza się...</a>
     </div>
   </div>
 

@@ -1,3 +1,4 @@
+let cookie = new (require(process.cwd() + '/helpers/cookie'));
 let express = require('express');
 let braintree = require("braintree");
 
@@ -13,34 +14,37 @@ let gateway = braintree.connect({
 //
 //	Actually take the card data and use it to charge the user
 //
-router.post("/", function (req, res, next) {
+router.post("/:total", function (req, res, next) {
 
 	//
 	//	1.	Transaction options
 	//
 	let options = {
-		amount: req.session.total,
+		amount: req.params.total / 100,
 		paymentMethodNonce: req.body.payment_method_nonce
 	}
 
 	//
 	//	2.	Charge the user
 	//
-	gateway.transaction.sale(options, function(err, result) {
+	gateway.transaction.sale(options, function(error, result) {
 
 		//
 		//	1.	Make sure there was no error
 		//
 		if(error)
 		{
-			console.log(error);
-
 			//
 			//	1.	Create a error for the user
 			//
-			let errro = {
-				msg: 'Dane karty są nieprawidłowe.'
+			let errors = {
+				msg: 'Błąd zewnętrzny.'
 			}
+
+			//
+			//	2.	Save the error as a cookie
+			//
+			res.cookie('errors', errors, cookie.settings());
 
 			//
 			//	->	Redirect the user back to the previous page
@@ -53,14 +57,19 @@ router.post("/", function (req, res, next) {
 		//
 		if(Boolean(result.success) == false)
 		{
-			console.log(result.errors.errorCollections.transaction.validationErrors);
+			//console.log(result.errors.errorCollections.transaction.validationErrors);
 
 			//
 			//	1.	Create a error for the user
 			//
-			let errro = {
+			let errors = {
 				msg: 'Dane karty są nieprawidłowe.'
 			}
+
+			//
+			//	2.	Save the error as a cookie
+			//
+			res.cookie('errors', errors, cookie.settings());
 
 			//
 			//	->	Redirect the user back to the previous page

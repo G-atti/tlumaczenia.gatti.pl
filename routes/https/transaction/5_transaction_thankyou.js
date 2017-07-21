@@ -27,7 +27,7 @@ router.get('/', function(req, res, next) {
 	//
 	//	2.	Prepare the header of the message
 	//
-	email.addTo(process.env.GEN_EMAIL);
+	email.addTo(process.env.EMAIL_TO);
 	email.setFrom('sabina@gatti.pl');
 	email.setSubject('Pieniądze doszły');
 	email.setText('.');

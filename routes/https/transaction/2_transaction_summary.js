@@ -1,5 +1,7 @@
-var express = require('express');
-var router = express.Router();
+let cookie = new (require(process.cwd() + '/helpers/cookie'));
+let express = require('express');
+
+let router = express.Router();
 
 //
 //  Process the data that was sent by the user
@@ -17,9 +19,14 @@ router.post('/', function(req, res, next) {
 	let year = date.getFullYear();
 
 	//
-	//  1.  Check if the price is a number and is available
+	//	3.	Treat the number as float always
 	//
-	if(isNaN(parseInt(req.body.money)))
+	let money = parseFloat(req.body.money);
+
+	//
+	//  3.  Check if the price is a number and is available
+	//
+	if(isNaN(money))
 	{
 		//
 		//	1.	Create a error for the user
@@ -28,6 +35,8 @@ router.post('/', function(req, res, next) {
 			msg: 'Podaj liczbę.'
 		}
 
+		res.cookie('errors', error, cookie.settings());
+
 		//
 		//	->	Redirect the user back to the previous page
 		//
@@ -35,29 +44,39 @@ router.post('/', function(req, res, next) {
 	}
 
 	//
-	//	2.	Convert the number in to a floating point
+	//	5.	Convert the float in to a positive integer so we can manipulate the
+	//		price without loosing precision
 	//
-	let money = parseFloat(req.body.money);
+	let cpu_money = money * 100;
 
 	//
-	//	3.	Calculate 23% taxes bases on the price entered by the user
+	//	6.	Calculate 23% taxes bases on the price entered by the user
 	//
-	let tax = money * (23 / 100);
+	let cpu_tax = cpu_money * (23 / 100);
 
 	//
-	//	4.	Add the tax to the price entered by the user and add .00 to the
+	//	6.	Add the tax to the price entered by the user and add .00 to the
 	//		final price
 	//
-	let total = (tax + money).toFixed(2);
+	let cpu_total = cpu_tax + cpu_money;
+
+	//
+	//	7.	Convert back the positive integer in to a floating point number
+	//		readable to the human.
+	//
+	let human_total = cpu_total / 100;
+	let human_tax = cpu_tax / 100;
+	let human_money = cpu_money / 100;
 
 	//
 	//  ->  Render the HTML page
 	//
 	res.render("_frame", {
+		money: human_money.toFixed(2),
+		tax: human_tax.toFixed(2),
+		total: human_total.toFixed(2),
+		cpu_total: cpu_total,
 		year: year,
-		money: money,
-		tax: tax.toFixed(2),
-		total: total,
 		title: "Home",
 		description: "Home Page",
 		og_image: "https://" + req.hostname + "/images/og/index.png",

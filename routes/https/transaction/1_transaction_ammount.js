@@ -1,4 +1,6 @@
+let cookie = new (require(process.cwd() + '/helpers/cookie'));
 let express = require('express');
+
 let router = express.Router();
 
 //
@@ -17,14 +19,25 @@ router.get('/', function(req, res, next) {
 	let year = date.getFullYear();
 
 	//
+	//	3.	Set the data in the past so we can delete the cookie from the
+	//		browser
+	//
+	let cookie_options = {
+		expires:  new Date(0)
+	}
+
+	//
 	//  ->  Render the HTML page
 	//
-	res.render("_frame", {
+	res
+	.cookie("errors", "", cookie.settings(cookie_options))
+	.render("_frame", {
 		year: year,
 		title: "Home",
 		description: "Home Page",
 		og_image: "https://" + req.hostname + "/images/og/index.png",
 		url: "https://" + req.hostname,
+		errors: req.cookies.errors || false,
 		partials: {
 			body: 'transaction/amount'
 		}
