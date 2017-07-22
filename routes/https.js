@@ -2,14 +2,6 @@ let express = require('express');
 
 let router = express.Router();
 
-//
-//	1. 	Don't force HTTPS the code is running in development mode
-//
-if(process.env.NODE_ENV != 'local')
-{
-	router.use(force_https);
-}
-
 //  _____     ____    _    _   _______   ______    _____
 // |  __ \   / __ \  | |  | | |__   __| |  ____|  / ____|
 // | |__) | | |  | | | |  | |    | |    | |__    | (___
