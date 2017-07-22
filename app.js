@@ -1,84 +1,260 @@
-require('newrelic');
+//  __  __    ____    _____    _    _   _        ______    _____
+// |  \/  |  / __ \  |  __ \  | |  | | | |      |  ____|  / ____|
+// | \  / | | |  | | | |  | | | |  | | | |      | |__    | (___
+// | |\/| | | |  | | | |  | | | |  | | | |      |  __|    \___ \
+// | |  | | | |__| | | |__| | | |__| | | |____  | |____   ____) |
+// |_|  |_|  \____/  |_____/   \____/  |______| |______| |_____/
+//
 
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var braintree = require("braintree");
-var session = require('express-session');
+//
+//  Module for working with file and directory paths
+//
+let path = require('path');
 
-var index = require('./routes/index');
+//
+//  HTTP request logger middleware for NodeJS
+//
+let logger = require('morgan');
 
-var transactionWelcome = require('./routes/0transaction-welcome');
-var transactionAmmount = require('./routes/1transaction-ammount');
-var transactionSummary = require('./routes/2transaction-summary');
-var transactionDetail = require('./routes/3transaction-detail');
-var transactionProcesing = require('./routes/4transaction-procesing');
-var transactionThankyou = require('./routes/5transaction-thankyou');
+//
+//  Fast, unopinionated, minimalist web framework
+//
+let express = require('express');
 
-var app = express();
+//
+//  Parse incoming request bodies in a middleware before your handlers,
+//  available under the req.body property.
+//
+let body_parser = require('body-parser');
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hjs');
+//
+//  Add basic security headers to each request.
+//
+let helmet = require('helmet');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-  secret: 'lifeisfun',
-  resave: true,
-  saveUninitialized: true,
-  cookie  : { maxAge  : new Date(Date.now() + 60000) }
+//
+//  Compress the response to reduce page size
+//
+let compression = require('compression');
+
+//
+//  Parse the header for cookies
+//
+let cookie_parser = require('cookie-parser');
+
+//
+//  Save the express framework in a simple variable
+//
+let app = express();
+
+//   _____   ______   _______   _______   _____   _   _    _____    _____
+//  / ____| |  ____| |__   __| |__   __| |_   _| | \ | |  / ____|  / ____|
+// | (___   | |__       | |       | |      | |   |  \| | | |  __  | (___
+//  \___ \  |  __|      | |       | |      | |   | . ` | | | |_ |  \___ \
+//  ____) | | |____     | |       | |     _| |_  | |\  | | |__| |  ____) |
+// |_____/  |______|    |_|       |_|    |_____| |_| \_|  \_____| |_____/
+//
+
+//
+//  Process Cookies from each requests. If a random string is provided it will
+//  be assigned to the req.secret variable, middlewares can use it to sign
+//  cookies or other things.
+//
+app.use(cookie_parser());
+
+//
+//  Compress the response with Gzip
+//
+app.use(compression());
+
+//
+//  Strict-Transport-Security
+//
+//  Tell the browser, that the next time it connects to the site, it should
+//  connect immediately over HTTPS
+//
+app.use(helmet.hsts({
+	maxAge: 15638400,
+	includeSubDomains: true,
+	force: true
 }));
 
-// Redirect old URL to the new one.
+//
+//  Make sure the cached data is always validated with the server before
+//  it get used.
+//
+app.use(helmet.noCache());
+
+//
+//  Set the custom headers.
+//
+app.use(helmet.contentSecurityPolicy({
+	directives: {
+		defaultSrc: ["'none'"],
+		connectSrc: ["'self'"],
+		fontSrc: ["'self'"],
+		frameSrc: ["'self'", " https://www.youtube.com"],
+		imgSrc: ["'self'", "data:"],
+		mediaSrc: ["'none'"],
+		objectSrc: ["'none'"],
+		scriptSrc: ["'self'", "'unsafe-inline'", " https://api.sandbox.braintreegateway.com", " http://www.googleadservices.com", " http://www.google-analytics.com"],
+		styleSrc: ["'self'", "'unsafe-inline'"]
+	}
+}));
+
+//
+//  Tell NodeJS where to look for views
+//
+app.set('views', path.join(__dirname, 'views'));
+
+//
+//  Load the Hogan HTML engine
+//
+app.set('view engine', 'hjs');
+
+//
+//  Remove the information about what type of framework is the site running on
+//
+app.disable('x-powered-by');
+
+//
+//  Expose the public folder to the world
+//
+app.use(express.static(path.join(__dirname, 'public')));
+
+//
+// HTTP request logger middleware for node.js
+//
+app.use(logger('dev'));
+
+//
+//  Parse all request as regular text, and not JSON objects
+//
+app.use(body_parser.json());
+
+//
+//  Parse application/x-www-form-urlencoded
+//
+app.use(body_parser.urlencoded({ extended: false }));
+
+//  _____     ____    _    _   _______   ______    _____
+// |  __ \   / __ \  | |  | | |__   __| |  ____|  / ____|
+// | |__) | | |  | | | |  | |    | |    | |__    | (___
+// |  _  /  | |  | | | |  | |    | |    |  __|    \___ \
+// | | \ \  | |__| | | |__| |    | |    | |____   ____) |
+// |_|  \_\  \____/   \____/     |_|    |______| |_____/
+//
+
+////////////////////////////////////////////////////////////////////////////////
+
+app.use(require('./routes/https'));
+
+////////////////////////////////////////////////////////////////////////////////
+
+//  ______   _____    _____     ____    _____     _____
+// |  ____| |  __ \  |  __ \   / __ \  |  __ \   / ____|
+// | |__    | |__) | | |__) | | |  | | | |__) | | (___
+// |  __|   |  _  /  |  _  /  | |  | | |  _  /   \___ \
+// | |____  | | \ \  | | \ \  | |__| | | | \ \   ____) |
+// |______| |_|  \_\ |_|  \_\  \____/  |_|  \_\ |_____/
+//
+
+//
+//
+//  If nonce of the above routes matches, we create an error to let the
+//  user know that the URL accessed doesn't match anything.
+//
 app.use(function(req, res, next) {
 
-  var protocol = req.protocol;
-  var host = req.get('host');
-  var path = req.get('href');
-  var newURL = 'tlumaczenia.gatti.pl';
-  var urls = {name: 'sg.gatti.pl', name: 'www.sg.gatti.pl'};
+	//
+	//  1.  Create a visual message for a human
+	//
+	let error = new Error("Not Found");
 
-  for(url in urls) {
-    if(host == urls[url]) {
+	//
+	//  2.  The request is: Not Found.
+	//
+	error.status = 404;
 
-      if(isNaN(path)) { path = ''; }
+	//
+	//  ->  Move to the next middelware
+	//
+	next(error);
 
-      return res.redirect(301, protocol + '://' + newURL + path);
-    }
-  }
-
-  return next();
 });
 
-app.use('/', index);
-app.use('/przelew', transactionWelcome);
-app.use('/przelew/suma', transactionAmmount);
-app.use('/przelew/podsumowanie', transactionSummary);
-app.use('/przelew/dane', transactionDetail);
-app.use('/przelew/procesing', transactionProcesing);
-app.use('/przelew/dziekuje', transactionThankyou);
+//
+//  Display any error that occurred during the request.
+//
+app.use(function(error, req, res, next) {
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  res.statusCode = 404,
-  res.render('index', {
-    partials: {
-      header: 'partials/header',
-      navbar: 'partials/navbar',
-      carousel: 'partials/empty',
-      body: 'error',
-      footer: 'partials/footer'
-    }
-  });
+	//
+	//  1.  Use the status of the error itself or set a default one.
+	//
+	let status = error.status || 500;
+
+	//
+	//  2.  If there was no status, and the default was set, we have to
+	//    add the status to the error object.
+	//
+	if(status === 500)
+	{
+		error.status = 500;
+	}
+
+	//
+	//  3.  Set the basic information about the error, that is going to be
+	//    displayed to user and developers - regardless.
+	//
+	let obj_message = {
+		message: error.message
+	}
+
+	//
+	//  4.  Don't log the error when in production
+	//
+	if(process.env.NODE_ENV != 'production')
+	{
+		//
+		//  1.  Set the variable to show the stack-trace to the developer
+		//
+		obj_message.error = error;
+
+		//
+		//  -> Show the error in the console
+		//
+		console.error(error);
+	}
+
+	//
+	//  5.  Set the status response as the one from the error message
+	//
+	res.status(status);
+
+	//
+	//  6.  Create a date object
+	//
+	let date  = new Date()
+
+	//
+	//  7.  Get the year of the actual date
+	//
+	let year = date.getFullYear();
+
+	//
+	//	->	Show the error page
+	//
+	res.render("_frame", {
+		year: year,
+		title: "Home",
+		description: "Home Page",
+		og_image: "https://" + req.hostname + "/images/og/index.png",
+		url: "https://" + req.hostname,
+		partials: {
+			body: 'error'
+		}
+	});
+
 });
 
 module.exports = app;
