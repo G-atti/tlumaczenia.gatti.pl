@@ -58,7 +58,7 @@ router.use('/:total', function(req, res, next) {
 	}
 
 	//
-	//	4.	Call Brain tree not sure what for
+	//	6.	Call Brain tree not sure what for
 	//
 	gateway.clientToken.generate({}, function (err, response) {
 

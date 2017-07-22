@@ -24,7 +24,7 @@ router.post('/', function(req, res, next) {
 	let money = parseFloat(req.body.money);
 
 	//
-	//  3.  Check if the price is a number and is available
+	//  4.  Check if the price is a number and is available
 	//
 	if(isNaN(money))
 	{
@@ -35,6 +35,9 @@ router.post('/', function(req, res, next) {
 			msg: 'Podaj liczbę.'
 		}
 
+		//
+		//	2.	Set the error as cookie
+		//
 		res.cookie('errors', error, cookie.settings());
 
 		//
@@ -55,13 +58,13 @@ router.post('/', function(req, res, next) {
 	let cpu_tax = cpu_money * (23 / 100);
 
 	//
-	//	6.	Add the tax to the price entered by the user and add .00 to the
+	//	7.	Add the tax to the price entered by the user and add .00 to the
 	//		final price
 	//
 	let cpu_total = cpu_tax + cpu_money;
 
 	//
-	//	7.	Convert back the positive integer in to a floating point number
+	//	8.	Convert back the positive integer in to a floating point number
 	//		readable to the human.
 	//
 	let human_total = cpu_total / 100;

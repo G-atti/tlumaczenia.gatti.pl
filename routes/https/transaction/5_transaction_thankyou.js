@@ -25,12 +25,12 @@ router.get('/', function(req, res, next) {
 	let info = req.cookies.transaction;
 
 	//
-	//	1.	Create a new Sendgrid object
+	//	4.	Create a new Sendgrid object
 	//
 	let email = new sendgrid.Email();
 
 	//
-	//	2.	Prepare the header of the message
+	//	5.	Prepare the header of the message
 	//
 	email.addTo(process.env.EMAIL_TO);
 	email.setFrom('sabina@gatti.pl');
@@ -38,26 +38,16 @@ router.get('/', function(req, res, next) {
 	email.setText('.');
 
 	//
-	//	3.	Select and add the right data to the template
+	//	6.	Select and add the right data to the template
 	//
 	email.setFilters({"templates": {"settings": {"enabled": 1, "template_id": "8f11e686-77dc-41b0-9c86-38110a603eaa"}}});
 	email.addSubstitution(':name:', info.name);
 	email.addSubstitution(':ammount:', info.cpu_total / 100);
 
 	//
-	//	4.	Send the actual email
+	//	7.	Send the actual email
 	//
 	sendgrid.send(email, function(err, json) {
-
-		//
-		//	Make sure there was no error
-		//
-		if(err)
-		{
-			console.error(err);
-
-			return res.redirect('back');
-		}
 
 		//
 		//  ->  Render the HTML page

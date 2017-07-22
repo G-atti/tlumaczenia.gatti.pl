@@ -70,7 +70,7 @@ router.post("/:cpu_total", function (req, res, next) {
 		//
 		if(Boolean(result.success) == false)
 		{
-			console.log(result.errors.errorCollections.transaction.validationErrors);
+			//console.log(result.errors.errorCollections.transaction.validationErrors);
 
 			//
 			//	1.	Create a error for the user
