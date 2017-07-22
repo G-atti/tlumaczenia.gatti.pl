@@ -40,46 +40,6 @@ if(cluster.isMaster) {
 	let cpu_count = 2;
 
 	//
-	// 	2.	When on the production server we decide how many workers do we
-	// 		want based on how much memory we have in the system and how much
-	// 		memory each worker takes.
-	//
-	if(process.env.NODE_ENV === 'production')
-	{
-		//
-		//	1.	Get the amount of memory in the system to calculate how many
-		//		workers to spawn so we can take advantage of the underlying
-		//		server
-		//
-		let memory = os.totalmem();
-
-		//
-		//	2.	If the app is deployed on Heroku, then we use the env variable
-		//		that Heroku provides
-		//
-		if(process.env.MEMORY_AVAILABLE)
-		{
-			//
-			//	1.	Convert MB in to bytes.
-			//
-			memory = process.env.MEMORY_AVAILABLE * 1e6;
-		}
-
-		//
-		//	3. 	Get used memory on the system by one worker and we pretend
-		//		the worker takes double the space so we end up using only 50%
-		//		of the available memory to have enough room for growth if
-		//		needed.
-		//
-		let memory_used = (process.memoryUsage().rss * 2);
-
-		//
-		//	4.	Calculate how many workers we should spawn -1 for good measure.
-		//
-		cpu_count = (memory / memory_used).toFixed() - 1;
-	}
-
-	//
 	//	3.	Create all the necessary workers
 	//
 	while(cpu_count--)
