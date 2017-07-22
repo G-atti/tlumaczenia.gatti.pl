@@ -74,9 +74,9 @@ app.use(compression());
 //  connect immediately over HTTPS
 //
 app.use(helmet.hsts({
-  maxAge: 15638400,
-  includeSubDomains: true,
-  force: true
+	maxAge: 15638400,
+	includeSubDomains: true,
+	force: true
 }));
 
 //
@@ -89,17 +89,17 @@ app.use(helmet.noCache());
 //  Set the custom headers.
 //
 app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'none'"],
-    connectSrc: ["'self'"],
-    fontSrc: ["'self'"],
-    frameSrc: ["'self'"],
-    imgSrc: ["'self'", "data:"],
-    mediaSrc: ["'none'"],
-    objectSrc: ["'none'"],
-    scriptSrc: ["'self'", "'unsafe-inline'", " https://api.sandbox.braintreegateway.com", " http://www.googleadservices.com", " http://www.google-analytics.com"],
-    styleSrc: ["'self'", "'unsafe-inline'"]
-  }
+	directives: {
+		defaultSrc: ["'none'"],
+		connectSrc: ["'self'"],
+		fontSrc: ["'self'"],
+		frameSrc: ["'self'", " https://www.youtube.com"],
+		imgSrc: ["'self'", "data:"],
+		mediaSrc: ["'none'"],
+		objectSrc: ["'none'"],
+		scriptSrc: ["'self'", "'unsafe-inline'", " https://api.sandbox.braintreegateway.com", " http://www.googleadservices.com", " http://www.google-analytics.com"],
+		styleSrc: ["'self'", "'unsafe-inline'"]
+	}
 }));
 
 //
@@ -166,20 +166,20 @@ app.use(require('./routes/https'));
 //
 app.use(function(req, res, next) {
 
-  //
-  //  1.  Create a visual message for a human
-  //
-  let error = new Error("Not Found");
+	//
+	//  1.  Create a visual message for a human
+	//
+	let error = new Error("Not Found");
 
-  //
-  //  2.  The request is: Not Found.
-  //
-  error.status = 404;
+	//
+	//  2.  The request is: Not Found.
+	//
+	error.status = 404;
 
-  //
-  //  ->  Move to the next middelware
-  //
-  next(error);
+	//
+	//  ->  Move to the next middelware
+	//
+	next(error);
 
 });
 
@@ -188,58 +188,72 @@ app.use(function(req, res, next) {
 //
 app.use(function(error, req, res, next) {
 
-  //
-  //  1.  Use the status of the error itself or set a default one.
-  //
-  let status = error.status || 500;
+	//
+	//  1.  Use the status of the error itself or set a default one.
+	//
+	let status = error.status || 500;
 
-  //
-  //  2.  If there was no status, and the default was set, we have to
-  //    add the status to the error object.
-  //
-  if(status === 500)
-  {
-    error.status = 500;
-  }
+	//
+	//  2.  If there was no status, and the default was set, we have to
+	//    add the status to the error object.
+	//
+	if(status === 500)
+	{
+		error.status = 500;
+	}
 
-  //
-  //  3.  Set the basic information about the error, that is going to be
-  //    displayed to user and developers - regardless.
-  //
-  let obj_message = {
-    message: error.message
-  }
+	//
+	//  3.  Set the basic information about the error, that is going to be
+	//    displayed to user and developers - regardless.
+	//
+	let obj_message = {
+		message: error.message
+	}
 
-  //
-  //  4.  Don't log the error when in production
-  //
-  if(process.env.NODE_ENV != 'production')
-  {
-    //
-    //  1.  Set the variable to show the stack-trace to the developer
-    //
-    obj_message.error = error;
+	//
+	//  4.  Don't log the error when in production
+	//
+	if(process.env.NODE_ENV != 'production')
+	{
+		//
+		//  1.  Set the variable to show the stack-trace to the developer
+		//
+		obj_message.error = error;
 
-    //
-    //  -> Show the error in the console
-    //
-    console.error(error);
-  }
+		//
+		//  -> Show the error in the console
+		//
+		console.error(error);
+	}
 
-  //
-  //  6.  Set the status response as the one from the error message
-  //
-  res.status(status);
+	//
+	//  5.  Set the status response as the one from the error message
+	//
+	res.status(status);
 
-  //
-  //  7.  Send the error
-  //
-  res.json(obj_message);
+	//
+	//  6.  Create a date object
+	//
+	let date  = new Date()
 
-  //
-  //  ->  Stop the request
-  //
-  res.end();
+	//
+	//  7.  Get the year of the actual date
+	//
+	let year = date.getFullYear();
+
+	//
+	//	->	Show the error page
+	//
+	res.render("_frame", {
+		year: year,
+		title: "Home",
+		description: "Home Page",
+		og_image: "https://" + req.hostname + "/images/og/index.png",
+		url: "https://" + req.hostname,
+		partials: {
+			body: 'error'
+		}
+	});
 
 });
 

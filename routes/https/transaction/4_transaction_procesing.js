@@ -4,8 +4,21 @@ let braintree = require("braintree");
 
 let router = express.Router();
 
+//
+//	By default we use the sandbox environment with Braintree
+//
+let bt_environment = braintree.Environment.Sandbox;
+
+//
+//	In production we do switch to Production
+//
+if(process.env.NODE_ENV == 'production')
+{
+	bt_environment = braintree.Environment.Production;
+}
+
 let gateway = braintree.connect({
-	environment:  braintree.Environment.Sandbox,
+	environment:  bt_environment,
 	merchantId:   process.env.BT_MERCHANT_ID,
 	publicKey:    process.env.BT_PUBLIC_KEY,
 	privateKey:   process.env.BT_PRIVATE_KEY

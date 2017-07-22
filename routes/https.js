@@ -46,7 +46,7 @@ function force_https(req, res, next)
 	//
 	//	1. 	Check what protocol are we using when behind a reverse proxy
 	//
-	if(req.headers['x-forwarded-proto'] !== 'https')
+	if(!req.secure)
 	{
 		//
 		//	-> 	Redirect the user to the same URL that he requested, but

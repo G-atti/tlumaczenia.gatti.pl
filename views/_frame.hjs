@@ -6,10 +6,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Tłumacz przysięgły włoskiego</title>
-        <meta name="description" content="Tłumaczenia Pisemne, Tłumaczenia Ustne i Doradca Międzynarodowy">
+        <title>{{title}}</title>
+        <meta name="description" content="{{description}}">
         <meta name="author" content="Sabina Gatti">
-        <link rel="canonical" href="http://tlumaczenia.gatti.pl/">
+        <link rel="canonical" href="{{url}}">
 
         <meta name="google-site-verification" content="PkqocsrwWpQtlped_y6O96TedZbskm_kEZFlefdiEXQ" />
 
@@ -32,21 +32,21 @@
         <meta name="theme-color" content="#ffffff">
 
         <meta property="og:site_name" content="Sabina Gatti, tłumacz przysięgły języka włoskiego.">
-        <meta property="og:title" content="Sabina Gatti, tłumacz przysięgły języka włoskiego.">
-        <meta property="og:description" content="Tłumaczenia Pisemne, Tłumaczenia Ustne i Doradca Międzynarodowy">
-        <meta property="og:url" content="http://tlumaczenia.gatti.pl/">
+        <meta property="og:title" content="{{title}}">
+        <meta property="og:description" content="{{description}}">
+        <meta property="og:url" content="{{url}}">
         <meta property="og:type" content="website">
-        <meta property="og:image" content="http://tlumaczenia.gatti.pl/images/5001.jpg">
+        <meta property="og:image" content="{{url}}/images/5001.jpg">
 
         <meta itemprop="name" content="Home">
         <meta itemprop="url" content="http://tlumaczenia.gatti.pl/">
-        <meta itemprop="thumbnailUrl" content="http://tlumaczenia.gatti.pl/images/5001.jpg">
+        <meta itemprop="thumbnailUrl" content="{{url}}/images/5001.jpg">
 
-        <link rel="image_src" href="http://tlumaczenia.gatti.pl/images/5001.jpg">
+        <link rel="image_src" href="{{url}}/images/5001.jpg">
 
-        <meta name="twitter:title" content="Sabina Gatti, tłumacz przysięgły języka włoskiego.">
-        <meta name="twitter:image" content="http://tlumaczenia.gatti.pl/images/5001.jpg">
-        <meta name="twitter:url" content="http://tlumaczenia.gatti.pl/">
+        <meta name="twitter:title" content="{{title}}">
+        <meta name="twitter:image" content="{{url}}/images/5001.jpg">
+        <meta name="twitter:url" content="{{url}}">
         <meta name="twitter:card" content="summary">
 
         <!-- Bootstrap core CSS -->

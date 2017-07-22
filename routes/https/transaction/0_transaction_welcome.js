@@ -21,8 +21,8 @@ router.get('/', function(req, res, next) {
 	//
 	res.render("_frame", {
 		year: year,
-		title: "Home",
-		description: "Home Page",
+		title: "Tłumacz przysięgły włoskiego - przelew",
+		description: "Tłumaczenia Pisemne, Tłumaczenia Ustne i Doradca Międzynarodowy",
 		og_image: "https://" + req.hostname + "/images/og/index.png",
 		url: "https://" + req.hostname,
 		partials: {

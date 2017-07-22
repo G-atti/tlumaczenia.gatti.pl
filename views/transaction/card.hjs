@@ -7,6 +7,7 @@
 </style>
 
 <script>
+
 	var clientToken = "{{client_token}}";
 
 	braintree.setup(clientToken, "custom", {
