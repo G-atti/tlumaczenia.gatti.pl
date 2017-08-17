@@ -1,7 +1,11 @@
 {
-  "name": "SabinaGatti",
+  "name": "tlumaczenia.gatti.pl",
   "version": "0.0.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidgatti/tlumaczenia.gatti.pl"
+  },
   "scripts": {
     "start": "nf start"
   },

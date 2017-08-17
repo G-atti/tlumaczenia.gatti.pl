@@ -37,7 +37,7 @@ if(cluster.isMaster) {
 	//	1.	When not in production by default we spin two workers no mater
 	//		the CPU/Core count.
 	//
-	let cpu_count = 2;
+	let cpu_count = 1;
 
 	//
 	//	3.	Create all the necessary workers
