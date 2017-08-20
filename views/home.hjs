@@ -53,7 +53,7 @@
   <div class="col-lg-4">
     <div class="img-circle center-block big-circle">
       <div class="img-circle center-block small-circle">
-        <img id="pencil" src="images/indeks-02.png" alt="Generic placeholder image" width="53" height="69">
+        <img id="pencil" src="images/pencil.png" srcset="images/pencil.png, images/pencil@2.png" alt="Generic placeholder image" width="53" height="69">
       </div>
     </div>
     <h2>Tłumaczenia Pisemne</h2>
@@ -62,7 +62,7 @@
   <div class="col-lg-4">
     <div class="img-circle center-block big-circle">
       <div class="img-circle center-block small-circle">
-        <img id="comments" src="images/indeks-03.png" alt="Generic placeholder image" width="53" height="69">
+        <img id="comments" src="images/chat.png" srcset="images/chat.png, images/chat@2.png" alt="Generic placeholder image" width="53" height="69">
       </div>
     </div>
     <h2>Tłumaczenia Ustne</h2>
@@ -71,7 +71,7 @@
   <div class="col-lg-4">
     <div class="img-circle center-block big-circle">
       <div class="img-circle center-block small-circle">
-        <img id="briefcase" src="images/indeks-04.png" alt="Generic placeholder image" width="53" height="69">
+        <img id="briefcase" src="images/bag.png" srcset="images/bag.png, images/bag@2.png" alt="Generic placeholder image" width="53" height="69">
       </div>
     </div>
     <h2>Doradca Międzynarodowy</h2>
@@ -98,7 +98,7 @@
 	    <p class="lead">Tłumaczę od przeszło 20 lat. Moje doświadczenie zawodowe gwarantuje wysoką jakość tłumaczeń zarówno pisemnych jak i ustnych.</p>
 	  </div>
 	  <div class="col-md-5">
-	    <img class="featurette-image img-responsive center-block" src="images/illustration1-458x458.png" alt="Generic placeholder image">
+	    <img class="featurette-image img-responsive center-block" src="images/table.png" srcset="images/table.png, images/table@2.png" alt="Generic placeholder image">
 	  </div>
 	</div>
 
@@ -110,7 +110,7 @@
 	    <p class="lead">Bardzo dobra znajomość języka nie wystarczy podczas tłumaczeń ustnych. Cechy osobowości i predyspozycje tłumacza są równie ważne. Moja odporność na stres, asertywność, otwartość na ludzi, mój optymizm i moja ciekawość sprawiają, że jakość świadczonych przeze mnie usług w zakresie tłumaczeń ustnych jest bardzo wysoka.</p>
 	  </div>
 	  <div class="col-md-5 col-md-pull-7">
-	    <img class="featurette-image img-responsive center-block" src="images/illustration3-458x458.png" alt="Generic placeholder image">
+	    <img class="featurette-image img-responsive center-block" src="images/abc.png" srcset="images/abc.png, images/abc@2.png" alt="Generic placeholder image">
 	  </div>
 	</div>
 
@@ -122,7 +122,7 @@
 	    <p class="lead">Moje wsparcie językowe, wiedza i kontakty zawodowe mogą ułatwić pierwsze kontakty biznesowe lub pomóc w załatwieniu spraw we włoskich urzędach.</p>
 	  </div>
 	  <div class="col-md-5">
-	    <img class="featurette-image img-responsive center-block" src="images/illustration2-458x458.png" alt="Generic placeholder image">
+	    <img class="featurette-image img-responsive center-block" src="images/travel.png" srcset="images/travel.png, images/travel@2.png" alt="Generic placeholder image">
 	  </div>
 	</div>
 
@@ -156,7 +156,7 @@
     </div>
   </div>
   <div class="col-md-5 col-md-pull-7">
-    <img class="featurette-image img-responsive center-block" src="images/maps_new.png" alt="Generic placeholder image">
+    <img class="featurette-image img-responsive center-block" src="images/map.png" srcset="images/map.png, images/map@2.png" alt="Generic placeholder image">
   </div>
 </div>
 
