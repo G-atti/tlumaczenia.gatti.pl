@@ -1,0 +1,8 @@
+#
+#	tlumaczenia.gatti.pl
+#
+
+User-agent: *
+Allow: /
+
+Sitemap: https://tlumaczenia.gatti.pl/sitemap.xml
