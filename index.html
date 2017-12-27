@@ -38,12 +38,6 @@
 		<link rel="stylesheet" href="assets/stylesheets/bootstrap.min.css">
 		<link rel="stylesheet" href="assets/stylesheets/style.css">
 
-		<script>
-			window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};
-			ga('create', 'UA-65677966-1', 'auto');
-			ga('set', 'transport', 'beacon');
-			ga('send', 'pageview');
-		</script>
 	</head>
 
 	<body>
@@ -133,7 +127,7 @@
 			<div class="col-lg-4">
 				<div class="img-circle center-block big-circle">
 					<div class="img-circle center-block small-circle">
-						<img id="pencil" src="assets/images/pencil.png" srcset="assets/images/pencil.png, assets/images/pencil@2.png" alt="Generic placeholder image" width="53" height="69">
+						<img id="pencil" src="assets/images/pencil.png" srcset="assets/images/pencil.png 1x, assets/images/pencil@2.png 2x" alt="Generic placeholder image" width="53" height="69">
 					</div>
 				</div>
 				<h2>Tłumaczenia Pisemne</h2>
@@ -249,10 +243,19 @@
 
 		</div>
 
-		<script async src="https://www.google-analytics.com/analytics.js"></script>
 		<script crossorigin="anonymous" src="/assets/js/jquery-3.2.1.min.js"></script>
 		<script crossorigin="anonymous" src="/assets/js/popper-1.13.0.min.js"></script>
 		<script crossorigin="anonymous" src="/assets/js/bootstrap-v4.0.0-beta.2.min.js"></script>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111604482-3"></script>
+
+		<script>
+
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-111604482-3');
+
+		</script>
 
 	</body>
 </html>
