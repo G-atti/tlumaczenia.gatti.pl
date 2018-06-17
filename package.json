@@ -1,0 +1,23 @@
+{
+  "name": "tlumaczenia.gatti.pl",
+  "version": "1.0.0",
+  "description": "Home page of tlumaczenia.gatti.pl",
+  "main": "index.js",
+  "scripts": {
+    "build": "avocado -s .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://davidgatti@github.com/davidgatti/tlumaczenia.gatti.pl.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidgatti/tlumaczenia.gatti.pl/issues"
+  },
+  "homepage": "https://github.com/davidgatti/tlumaczenia.gatti.pl#readme",
+  "dependencies": {
+    "@0x4447/avocado": "^1.3.0"
+  }
+}
